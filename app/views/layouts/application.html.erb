@@ -9,6 +9,25 @@
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
+  <header>
+    <nav class="navbar navber-fixed-top navbar-inverse">
+      <div class="container navber-left">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="#">Bookers</a>
+        </div>
+
+        <div class="collapse navbar-collapse navber-right">
+          <ul class="nav navbar-nav navber-right">
+            <li><a href="#">Home</a></li>
+            <li><a href="#">About</a></li>
+            <li><a href="#">sign up</a></li>
+            <li><a href="#">login</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </header>
+  <!-- /header -->
   <body>
     <%= yield %>
   </body>
