@@ -9,23 +9,32 @@
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <header class="navbar navber-expand-md navber-fixed-top navbar-inverse">
+  <header class="navbar navber-fixed-top navbar-inverse">
       <div class="container">
-        <nav class="nav navbar-nav mr-auto">
-          <span>Bookers</span>
+       <div class="row">
+        <nav class="nav navbar-nav col-lg-7">
+          <span class="title">Bookers</span>
         </nav>
         <nav>
-          <ul class="nav navbar-nav ml-auto">
-            <li><a href="#">Home</a></li>
-            <li><a href="#">About</a></li>
-            <li><a href="#">sign up</a></li>
-            <li><a href="#">login</a></li>
+          <ul class="nav navbar-nav">
+            <% if user_signed_in? %>
+            <li><a href="#"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>Home</a></li>
+            <li><a href="#"><span class="glyphicon glyphicon-user" aria-hidden="true"></span>User</a></li>
+            <li><a href="#"><span class="glyphicon glyphicon-book" aria-hidden="true"></span>Books</a></li>
+            <li><a href="#"><span class="glyphicon glyphicon-log-out" aria-hidden="true"></span>logout</a></li>
+            <% else %>
+            <li><a href="#"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>Home</a></li>
+            <li><a href="/home/about"><span class="glyphicon glyphicon-link" aria-hidden="true"></span>About</a></li>
+            <li><%= link_to ' sign up', new_user_registration_path, class:"glyphicon glyphicon-edit" %></li>
+            <li><%= link_to ' login', new_user_session_path, class:"glyphicon glyphicon-log-in" %></li>
+            <% end %>
           </ul>
         </nav>
+       </div>
       </div>
   </header>
   <!-- /header -->
-  
+
   <body>
     <%= yield %>
   </body>

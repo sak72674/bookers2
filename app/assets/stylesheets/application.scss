@@ -16,3 +16,26 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
+
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+.field {
+	margin: 10px auto;
+}
+
+.btn {
+	margin-bottom: 10px;
+}
+
+.title {
+	font-size: 20px;
+	color: white;
+}
+
+#error_explanation {
+	color: red;
+}

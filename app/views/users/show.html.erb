@@ -1,0 +1,25 @@
+<div class="container">
+	<div class="row">
+		<div class="col-lg-2">
+			<%= render 'books/list', books: @books, users: @users %>
+		</div>
+
+		<div class="col-lg-8">
+			<h2>Books</h2>
+			<table class="table">
+				<tr>
+					<th></th>
+					<th>Title</th>
+					<th>Opinion</th>
+				</tr>
+				<tr>
+					<% @books.each do |book| %>
+					<td><%= attachment_image_tag @user, :profile_image, :fill, 60, 60, class:"image-circle pull-left profile-thumb", fallback: "no_image.jpg" %></td>
+					<td><%= @book.title %></td>
+					<td><%= @book.body %></td>
+					<% end %>
+				</tr>
+			</table>
+		</div>
+	</div>
+</div>
