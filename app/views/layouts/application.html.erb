@@ -18,10 +18,10 @@
         <nav>
           <ul class="nav navbar-nav">
             <% if user_signed_in? %>
-            <li><a href="#"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>Home</a></li>
-            <li><a href="#"><span class="glyphicon glyphicon-user" aria-hidden="true"></span>User</a></li>
-            <li><a href="#"><span class="glyphicon glyphicon-book" aria-hidden="true"></span>Books</a></li>
-            <li><a href="#"><span class="glyphicon glyphicon-log-out" aria-hidden="true"></span>logout</a></li>
+            <li><%= link_to 'Home', user_path(@user.id), class:"glyphicon glyphicon-home" %></li>
+            <li><%= link_to 'User', users_path, class:"glyphicon glyphicon-user" %></li>
+            <li><%= link_to 'Books', books_path, class:"glyphicon glyphicon-book" %></li>
+            <li><%= link_to 'logout', destroy_user_session_path, class:"glyphicon glyphicon-log-out", method: :delete %></li>
             <% else %>
             <li><a href="#"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>Home</a></li>
             <li><a href="/home/about"><span class="glyphicon glyphicon-link" aria-hidden="true"></span>About</a></li>
