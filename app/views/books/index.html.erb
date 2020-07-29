@@ -1,6 +1,34 @@
 <div class="container">
 	<div class="row">
-		<div class="col-lg-3">
+		<div class="col-lg-10">
+	        <% if flash[:error] %>
+	            <div class="flash-error">
+	            	<h2>error</h2>
+		        	<%= flash[:error] %>
+	            </div>
+            <% end %>
+        </div>
+		<div class="col-xs-3">
 			<%= render 'users/userinfo', user: @user %>
 			<%= render 'books/newbook', book: @book %>
 		</div>
+
+		<div class="col-xs-9">
+			<h2>Books</h2>
+			<table class="table">
+				<tr>
+					<th></th>
+					<th>Title</th>
+					<th>Opinion</th>
+				</tr>
+				<% @books.each do |book| %>
+				<tr>
+					<td><%= link_to user_path(book.user) do %><%= attachment_image_tag book.user, :profile_image, :fill, 30, 30, class:"image-circle pull-left profile-thumb", fallback:"no_image.jpg", size:'30x30' %><% end %></td>
+					<td><%= link_to book.title, book_path(book.id) %></td>
+					<td><%= book.body %></td>
+				</tr>
+				<% end %>
+			</table>
+		</div>
+	</div>
+</div>
