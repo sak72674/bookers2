@@ -7,7 +7,7 @@
 	<div class="row">
 		<div class="col-xs-3">
 			<%= render 'users/userinfo', user: @user %>
-			<%= render 'books/newbook', book: @book %>
+			<%= render 'books/newbook', book: @book_new %>
 		</div>
 
 		<div class="col-xs-9">
@@ -18,12 +18,40 @@
 						<%= link_to @book.user.name, user_path(@book.user) %></td>
 					<td><%= @book.title %></td>
 					<td><%= @book.body %></td>
+					<td>
+            			<% if @book.favorited_by?(current_user) %>
+              				<%= link_to book_favorites_path(@book), method: :delete do %>
+                				<span class="glyphicon glyphicon-heart"><%= @book.favorites.count%></span>
+              				<% end %>
+            			<% else %>
+              				<%= link_to book_favorites_path(@book), method: :post do %>
+                				<span class="glyphicon glyphicon-heart-empty"><%= @book.favorites.count %></span>
+              				<% end %>
+            			<% end %>
+          			</td>
+          			<td>コメント数: <%= @book.book_comments.count %></td>
 					<% if @book.user == current_user %>
 					<td><%= link_to 'Edit', edit_book_path(@book), class:"btn btn-success btn-xs" %></td>
 					<td><%= link_to 'Destroy', book_path(@book), class:"btn btn-danger btn-xs", method: :delete, 'data-confirm' => "本当に削除しますか？" %></td>
 					<% end %>
 				</tr>
 			</table>
+			<table>
+				<% @book_comments.each do |book_comment| %>
+					<tr>
+						<td><%= attachment_image_tag book_comment.user, :profile_image, :fill, 30, 30, fallback: "no_image.jpg", size:'30x30' %></td>
+						<td><%= book_comment.comment %></td>
+						<% if current_user == book_comment.user %>
+						<td><%= link_to 'Destroy', book_book_comment_path(@book, book_comment), method: :delete, class:"btn-sm btn-danger" %></td>
+						<% end %>
+					</tr>
+				<% end %>
+			</table>
+
+			<%= form_for [@book, @book_comment] do |f| %>
+				<%= f.text_area :comment, size: "100x5" %>
+				<%= f.submit '送信', class:"btn btn-default" %>
+			<% end %>
 		</div>
 	</div>
 </div>
