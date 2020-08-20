@@ -1,0 +1,40 @@
+<div class="container">
+	<div class="row">
+		<div class="col-lg-12">
+			<% if @range == "1" %>
+				<h2>Users search for </h2>
+				<table class="table">
+					<tr>
+						<th>image</th>
+						<th>name</th>
+						<th></th>
+					</tr>
+					<% @user.each do |user| %>
+					<tr>
+						<td><%= attachment_image_tag user, :profile_image, :fill, 30, 30, class:"image-circle pull-left profile-thumb", fallback:"no_image.jpg", size:'30x30' %></td>
+						<td><%= user.name %></td>
+						<td><%= link_to 'Show', user_path(user.id) %></td>
+					</tr>
+					<% end %>
+				</table>
+
+			<% else %>
+				<h2>Books search for </h2>
+				<table class="table">
+					<tr>
+						<th></th>
+						<th>Title</th>
+						<th>Opinion</th>
+					</tr>
+					<% @book.each do |book| %>
+					<tr>
+						<td><%= link_to user_path(book.user) do %><%= attachment_image_tag book.user, :profile_image, :fill, 30, 30, class:"image-circle pull-left profile-thumb", fallback:"no_image.jpg", size:'30x30' %><% end %></td>
+						<td><%= link_to book.title, book_path(book.id) %></td>
+						<td><%= book.body %></td>
+					</tr>
+					<% end %>
+				</table>
+			<% end %>
+		</div>
+	</div>
+</div>
