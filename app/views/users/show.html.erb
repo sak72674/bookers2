@@ -30,4 +30,7 @@
 			</table>
 		</div>
 	</div>
+	<% if @user == current_user %>
+	<%= render 'users/map', user: @user %>
+	<% end %>
 </div>
