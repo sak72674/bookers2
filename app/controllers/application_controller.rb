@@ -16,6 +16,6 @@ before_action :configure_permitted_parameters,if: :devise_controller?
 	  devise_parameter_sanitizer.permit(:sign_in, keys: [:name, :password])
 	end
 	def configure_permitted_parameters
-      devise_parameter_sanitizer.permit(:sign_up,keys:[:email])
+      devise_parameter_sanitizer.permit(:sign_up,keys:[:name, :email, :postcode, :prefecture_code, :address_city, :address_street, :address_building])
     end
 end

@@ -15,12 +15,15 @@ class User < ApplicationRecord
     self.prefecture_code = JpPrefecture::Prefecture.find(name: prefecture_name).code
   end
 
-  geocoded_by :address
-  after_validation :geocode
-
   def address
     "%s %s %s %s" % [prefecture_name, address_city, address_street, address_building]
   end
+
+  geocoded_by :address
+  after_validation :geocode
+
+  after_validation :latitude, presence: true
+  after_validation :longitude, presence: true
 
 
   has_many :books, dependent: :destroy
